@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--  xmlns = xml namespace -->
+<html lang='en' xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title >sign up page</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<section >
+<div class="container">
+<div class="row justify-content-center align-items-center">
+<div class="col-md-6 offset-md-0">
+
+
+<div class="my-card mt-0">
+
+ <div th:if="${session.message}" th:classappend="${session.message.type}"class="alert alert-primary" role="alert">
+  <p class="text-center" th:text="${session.message.content}">A simple primary alert with <a href="" class="alert-link">an example link</a>. Give it a click if you like.</p>
+<th:block  th:text="${#session.removeAttribute('message')}"></th:block>
+</div>
+
+<div class="container text-center">
+<img  style="width:80px " src="" th:src="@{/img/survey.png}"/>
+</div>
+
+
+
+<h1 class="text-center"> Register here</h1>
+
+
+
+<form  th:action="@{/do_register}" method="POST" th:object="${user}">
+<!--  Name field -->
+ <div class="form-group">
+    <label for="name" class="form-label">Your Name</label>
+    
+    <input name="name"
+     type="text"
+      class="form-control" 
+      th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
+      id="name" 
+      placeholder="Enter here" 
+      required th:value="${user.name}" />
+      <div th:each="e: ${#fields.errors('name')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
+ 	Please specify user name </div>
+    
+  </div>
+
+  <!--  Email field  -->
+ <div class="form-group">
+    <label for="email" class="form-label">Your Email</label>  
+    <input name="email"
+     type="text" 
+     class="form-control" 
+     th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
+     id="email"
+     placeholder="Enter here" 
+     required th:value="${user.email}">
+      <div th:each="e: ${#fields.errors('email')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
+ 	Please specify email</div>
+    
+  </div>
+  
+  <!--  password field -->
+ <div class="form-group">
+    <label for="password" class="form-label">Your Password</label>
+    
+    <input name="password"
+     type="password"
+      class="form-control"
+      th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"
+       id="password" 
+       placeholder="Enter here" 
+       required>
+    
+   <div th:each="e: ${#fields.errors('password')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
+ 	Please specify password</div>
+ 	</div>
+  
+  <!--  about field -->
+ <div class="form-group">
+    <label for="about" class="form-label">About</label>
+    
+    <textarea name="about" id="about" th:value="${user.about}" rows="5" placeholder="Enter something here" class="form-control" required></textarea>
+   
+  </div>
+
+<!--  terms and condition agreement -->
+ <div class="mb-3 form-check form-group">
+    <input 
+    type="checkbox" 
+    class="form-check-input" 
+     th:classappend="${#fields.hasErrors('agreed')?'is-invalid':''}"
+    name="agreed"
+    id="exampleCheck1">
+    <label class="form-check-label" for="form-check-input">Accept terms and condition</label>
+     <div th:each="e: ${#fields.errors('agreed')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
+ 	  Please Agree terms and condition</div>
+
+  </div>
+
+<div class="container text-center">
+<button type="submit" class="btn btn-primary btn-block text-white">Submit</button>
+
+<button type="reset" class="btn btn-warning btn-block">Reset</button>
+</div>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+
+</section>
+
+</body>
+</html>
