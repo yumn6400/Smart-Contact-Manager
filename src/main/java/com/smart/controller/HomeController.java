@@ -75,7 +75,7 @@ public class HomeController {
 			}
 			user.setRole("ROLE_USER");
 			user.setAgreed(agreed);
-			user.setImageUrl("banner.jpg");
+			user.setImageUrl("dafault.png");
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			
 			System.out.println(user);

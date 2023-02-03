@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--  xmlns = xml namespace -->
+<html lang='en' xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title >profile page</title>
+</head>
+<body>
+<section>
+<h1>This is profile view</h1>
+ 
+ <div class="container">
+ 
+ <div class="card">
+ <div class="card-body">
+ <div class="container text-center">
+ <img style="height:200px;width:200px" src="" class="my_profile_picture" th:src="@{'/img/'+${user.imageUrl}}" alt="Profile Photo" />
+ </div>
+ <h1 class="text-center mt-3" th:text="${user.name}"></h1>
+ 
+ 
+ <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#UserID</th>
+      <th scope="col"><span th:text="'SCM'+${user.id}"></span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Email</th>
+      <td><span th:text="${user.email}"></span></td>
+     
+    </tr>
+    
+     <tr>
+      <th scope="row">Role</th>
+      <td><span th:text="${user.role}"></span></td>
+     
+    </tr>
+    <tr>
+      <th scope="row">Account Active</th>
+      <td><span th:text="${user.agreed}"></span></td>
+     
+    </tr>
+    
+    <tr>
+      <th scope="row">About</th>
+      <td><span th:text="${user.about}"></span></td>
+     
+    </tr>
+  </tbody>
+   
+</table>
+ 
+ </div>
+
+</div>
+ </div>
+ 
+</section>
+
+</body>
+</html>

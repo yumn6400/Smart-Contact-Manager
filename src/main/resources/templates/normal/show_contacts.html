@@ -4,13 +4,28 @@
 <head>
 <meta charset="UTF-8">
 <title >about page</title>
+
 </head>
 <body>
 <section>
 <div class="card mr-3 ml-3">
 	<div class="card-body">
 		<h1 class="text-center">Your Contacts</h1>
-		
+	<!--  Search table -->
+	<div class="search-container my-3">
+	<input onkeyup="search()" id="search-input" type="text" class="form-control" placeholder="search your contact" />
+	<div class="search-result">
+	
+	<!--  result goes here -->
+	<h1>This is search result</h1>
+
+	</div>
+	
+	</div>
+	
+	
+	
+	
 		<table class="table">
   <thead>
     <tr>
@@ -41,8 +56,12 @@
       
       <td th:text="${c.phone}">34535635</td>
       <td>
-		<button class="btn btn-danger btn-sm">Delete</button>
-		<button class="btn btn-primary btn-sm">Update</button>
+      	<form method="POST" th:action="@{'/user/update-contact/'+${c.cId}}" class="mt-2">
+		<button type='submit' class="btn btn-primary btn-sm btn-block"    >Update</button>
+		</form>
+		<a class="btn btn-danger btn-sm btn-block"  th:onclick="|deleteContact(${c.cId})|">Delete</a>
+		
+		
       </td> 
     </tr>
     
@@ -58,9 +77,9 @@
     <li th:if="${currentPage !=0}" class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contacts/'+${currentPage-1}}" >Previous</a></li>
     
     
-    <li  th:classappend="${currentPage==i-1?'active':''}"  th:each= "i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contacts/'+${i-1}}"><span th:text=${i}>i</span></a></li>
+    <li th:if="${currentPage!=0}" th:classappend="${ currentPage==i-1?'active':''}"  th:each= "i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contacts/'+${i-1}}"><span th:text=${i}>i</span></a></li>
     
-    <li th:if="${currentPage+1 !=totalPages}"  class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contacts/'+${currentPage+1}}">Next</a></li>
+    <li th:if="${currentPage!=0 && currentPage+1 !=totalPages}"  class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contacts/'+${currentPage+1}}">Next</a></li>
     
   </ul>
 </nav>

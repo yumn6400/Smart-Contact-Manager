@@ -7,7 +7,20 @@
 </head>
 <body>
 <section>
-<h1>This is private dashboard</h1>
+<div class="container">
+<div class="card text-center">
+<div class="card-body mr-5">
+
+ <img style="height:200px;width:200px" th:src="@{'/img/main_contact.png'}" class="my_profile_picture" alt="Profile Photo" />
+ 
+</div>
+
+<h1>Add Your Contacts Here...........</h1>
+
+<a class="btn btn-primary mt-4 btn-block text-uppercase" th:href="@{/user/add_contact}">Add Contact</a>
+
+</div>
+</div>
  
 </section>
 

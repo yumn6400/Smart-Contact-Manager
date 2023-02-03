@@ -2,6 +2,7 @@ package com.smart.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,10 +53,12 @@ public void setAgreed(boolean agreed) {
 
 private String imageUrl;
 
+
+
 @Column(length=500)
 private String about;
 
-@OneToMany(cascade=CascadeType.ALL ,fetch=FetchType.LAZY , mappedBy="user")
+@OneToMany(cascade=CascadeType.ALL ,fetch=FetchType.LAZY , mappedBy="user",orphanRemoval=true)
 private List<Contact> contacts=new ArrayList<Contact>();
 
 
@@ -131,4 +134,9 @@ public String toString() {
 			+ ", agreed=" + agreed + ", imageUrl=" + imageUrl + ", about=" + about + ", contacts=" + contacts
 			+ "]";
 }
+@Override
+public boolean equals(Object obj) {
+	return this.id==((Contact)obj).getcId();	
+}
+
 }
