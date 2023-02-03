@@ -3,7 +3,7 @@
 <html lang='en' xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
 <head>
 <meta charset="UTF-8">
-<title >about page</title>
+<title >home page</title>
 </head>
 <body>
 <section>
@@ -21,6 +21,11 @@
 
 </div>
 </div>
+ <script>
+ $(".item").removeClass("active");
+ $('#home-link').addClass('active'); 
+ </script>
+ 
  
 </section>
 
