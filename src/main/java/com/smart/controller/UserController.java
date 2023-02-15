@@ -238,9 +238,7 @@ public class UserController {
 				Path path=Paths.get(f.getAbsolutePath()+File.separator+file.getOriginalFilename());
 				Files.copy(file.getInputStream(),path,StandardCopyOption.REPLACE_EXISTING);
 				System.out.println("Image is uploaded");
-				contact.setImage(file.getOriginalFilename());
-				
-				
+				contact.setImage(file.getOriginalFilename());	
 			}
 			else
 			{
@@ -251,8 +249,7 @@ public class UserController {
 				else
 				{
 					contact.setImage(oldContactDetails.getImage());					
-				}
-				
+				}		
 			}
 			User user=this.userRepository.getUserByUserName(principal.getName());
 			contact.setUser(user);
@@ -260,8 +257,8 @@ public class UserController {
 			session.setAttribute("message",new Message("Your contact is updated","success"));
 		}catch(Exception e)
 		{
-			System.out.println(e.getMessage())
-			;
+			contact.setImage("contact.jpg");
+			System.out.println(e.getMessage());
 		}
 		System.out.println(contact.getName());
 		return "redirect:/user/"+contact.getcId()+"/contact";

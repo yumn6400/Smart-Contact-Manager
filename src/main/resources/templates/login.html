@@ -27,6 +27,10 @@
                             You have logout                           
                             </div>
                             
+                             <div th:if="${param.change}" class="alert alert-success">
+                            Change password successfully                           
+                            </div>
+                            
                             
                             <div class="form-group">
                                 <label for="username" class="text-info">User name:</label><br>
@@ -43,6 +47,11 @@
                             <div id="register-link" class="text-right">
                                 <a href="/signup" class="text-info">Register here</a>
                             </div>
+                            
+                            <div class="container text-center">
+                            	<a th:href="@{/forgot}">Forgot Password</a>
+                            </div>
+                            
                         </form>
                     </div>
                 </div>

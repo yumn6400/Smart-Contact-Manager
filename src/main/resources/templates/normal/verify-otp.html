@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--  xmlns = xml namespace -->
+<html lang='en' xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title >about page</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+<section>
+    <div id="login">
+        
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12" style="height:250px">
+                    	<!--  Email form -->
+                    	
+						 <div class="container" th:if="${session.message}">
+    					  <div class="alert  text-center alert-warning" role="alert">
+						 <span th:text="${session.message}"></span>
+	
+   							 </div>
+    <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+    
+    </div>
+	
+                        <form method="POST" action="" th:action="@{/verify-otp}">
+                       <div class="form-group">
+                       <input required type="text" placeholder="Enter otp here" name="otp" class="form-control" />
+                       </div>
+                       <div class="text-center">
+                       <button class="btn btn-success">Verify</button>
+                       </div>
+                       
+                       
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+
+</body>
+</html>
